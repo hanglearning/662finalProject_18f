@@ -15,6 +15,11 @@ TEST(HybridDsaturTests, HybridDsaturK5ColorTest) {
     
     HybridDsatur* hybrid_dsatur = new HybridDsatur(k5);
     map<string,int> resultant = hybrid_dsatur->color();
+    
+    // std::cout << resultant << std::endl;
+    // std::cout << (hybrid_dsatur->print_chromatic()) << std::endl; //prints the number of colors required to color your graph
+    // std::cout << (hybrid_dsatur->print_coloring()) << std::endl; //prints each node (by name) and it's color (int)
+
     EXPECT_EQ(resultant.size(), k5.size());
     EXPECT_EQ(hybrid_dsatur->get_num_colors(),5);
     delete hybrid_dsatur;
