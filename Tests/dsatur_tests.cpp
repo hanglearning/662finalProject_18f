@@ -28,26 +28,26 @@ TEST(DsaturTests, DsaturK5ColorTest) {
     delete dsatur;
 }
 
-TEST(DsaturTests, DsaturK33ColorTest) {
-    vector<string> side_a = { "k4", "k5", "k6" };
-    vector<string> side_b = { "k1", "k2", "k3" };
-    map<string,vector<string>> k33 = { {"k1", side_a}, {"k2", side_a}, {"k3", side_a}, {"k4", side_b}, {"k5", side_b}, {"k6", side_b} };
+// TEST(DsaturTests, DsaturK33ColorTest) {
+//     vector<string> side_a = { "k4", "k5", "k6" };
+//     vector<string> side_b = { "k1", "k2", "k3" };
+//     map<string,vector<string>> k33 = { {"k1", side_a}, {"k2", side_a}, {"k3", side_a}, {"k4", side_b}, {"k5", side_b}, {"k6", side_b} };
     
-    Dsatur* dsatur = new Dsatur(k33);
-    map<string,int> resultant = dsatur->color();
-    EXPECT_EQ(resultant.size(), k33.size());
-    EXPECT_EQ(dsatur->get_num_colors(),2);
-    delete dsatur;
-}
+//     Dsatur* dsatur = new Dsatur(k33);
+//     map<string,int> resultant = dsatur->color();
+//     EXPECT_EQ(resultant.size(), k33.size());
+//     EXPECT_EQ(dsatur->get_num_colors(),2);
+//     delete dsatur;
+// }
 
-TEST(DsaturTests, DsaturEmptyGraphTest) {
-    map<string,vector<string>> empty = map<string,vector<string>>();
+// TEST(DsaturTests, DsaturEmptyGraphTest) {
+//     map<string,vector<string>> empty = map<string,vector<string>>();
 
-    Dsatur* dsatur = new Dsatur(empty);
-    map<string,int> resultant = dsatur->color();
-    EXPECT_EQ(resultant.size(), empty.size());
-    delete dsatur;
-}
+//     Dsatur* dsatur = new Dsatur(empty);
+//     map<string,int> resultant = dsatur->color();
+//     EXPECT_EQ(resultant.size(), empty.size());
+//     delete dsatur;
+// }
 
 // TEST(DsaturTests, DsaturOneNodeGraphTest) {
 //     map<string,vector<string>> one_node = {{ "n", vector<string>() }};
