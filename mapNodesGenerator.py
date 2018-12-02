@@ -1,7 +1,7 @@
 import sys
 from random import randint
 
-NODES_NUMBER = 100
+NODES_NUMBER = 400
 
 algos = ["dsatur", "hybrid_dsatur", "hybrid_lmxrlf", "lmxrlf", "mcs", "tabucol"]
 
@@ -24,8 +24,7 @@ def mapGenerator():
   open('demofile.txt', 'w').close()
   for node in range(1, NODES_NUMBER + 1):
     f = open("demofile.txt", "a")
-    f.write("    ")
-    f.write("vector<string> node_k")
+    f.write("    vector<string> node_k")
     f.write(str(node))
     f.write(" = { \"k")
   
@@ -40,6 +39,20 @@ def mapGenerator():
     f.write("\" };")
     f.write("\n")
     f.close()
+  f = open("demofile.txt", "a")
+  f.write("    map<string,vector<string>> k")
+  f.write(str(NODES_NUMBER))
+  f.write(" = { ")
+  for i in range(1, NODES_NUMBER + 1):
+    f.write("{\"k")
+    f.write(str(i))
+    f.write("\", node_k")
+    f.write(str(i))
+    if i != NODES_NUMBER:
+      f.write("}, ")
+    else:
+      f.write("} };")
+  f.close()
 
 mapGenerator()
 
