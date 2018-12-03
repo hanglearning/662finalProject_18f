@@ -55,12 +55,16 @@ def writeToOtherAlgosMapFile(map_nodes):
 		map_file.write("TEST(" + algoCamel + "Tests, " + algoCamel + "K5ColorTest) {")
 		map_file.write("\n\n")
 		# py append file content to another https://www.sanfoundry.com/python-program-append-contents-file-another/
-		nodes_file = open("map-generator/" + map_nodes + "-nodes.txt", "r")
+		nodes_file = ''
+		if mapChoice != 'g':
+			nodes_file = open("map-generator/" + str(map_nodes) + "nodes.txt", "r")
+		else:
+			nodes_file = open("map-generator/newMap/" + str(map_nodes) + "nodes.txt", "r")
 		nodes_file_content = nodes_file.read()
 		nodes_file.close()
 		map_file.write(nodes_file_content)
 		map_file.write("\n\n")
-		map_file.write("    " + algoCamel + "* " + algo + " = new " + algoCamel + "(k" + map_nodes + ");")
+		map_file.write("    " + algoCamel + "* " + algo + " = new " + algoCamel + "(k" + str(map_nodes) + ");")
 		map_file.write("\n\n")
 		map_file.write("    map<string,int> resultant = " + algo + "->color();")
 		map_file.write("\n\n")
@@ -81,30 +85,17 @@ def ausAndUsa(_choice):
 		print("1 - Coloring the Map of USA by backtracking algorithms with 4 colors")
 		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/USA/radio.py radio-coloring/USA/constraints-usa; ((i++)); done"
 	output = subprocess.check_call(taskHere, shell=True)
-
-	# show coloring result
-	# showResult = input("Would you like to show the coloring result?(y/n):")
-	# while showResult not in ['y', 'n']:
-	# 	showResult = input("Please only input 'y' or 'n'..")
-	# if showResult == 'y':
-	# 	if mapChoice == 'a':
-	# 		with open('radio-coloring/Australia/results.txt', 'r') as fin:
-	# 			print (fin.read())
-	# 	else:
-	# 		with open('radio-coloring/USA/results.txt', 'r') as fin:
-	# 			print (fin.read())
-	# 	fin.close()
 	showColoringResults()
 
 	# execute other algorithms
 	# Map of Australia
 	if mapChoice == 'a':
 		# write to map files for these other algorithms
-		print("2 - Coloring the Map of Australia by other algorithms with auto set colors")
+		print("2 - Coloring the Map of Australia by other algorithms with auto set colors\n")
 		writeToOtherAlgosMapFile("aus")
 	# Map of USA
 	else:
-		print("2 - Coloring the Map of USA by other algorithms with auto set colors")
+		print("2 - Coloring the Map of USA by other algorithms with auto set colors\n")
 		writeToOtherAlgosMapFile("usa")
 	taskHere = "cd graph-coloring-algos; make; ./color-test"
 	output = subprocess.check_call(taskHere, shell=True)
@@ -113,6 +104,7 @@ def showColoringResults():
 	showResult = input("Would you like to show the coloring result?(y/n):")
 	while showResult not in ['y', 'n']:
 		showResult = input("Please only input 'y' or 'n'..")
+	print()
 	if showResult == 'y':
 		if mapChoice == 'a':
 			with open('radio-coloring/Australia/results.txt', 'r') as fin:
@@ -124,6 +116,41 @@ def showColoringResults():
 			with open('radio-coloring/UserDIY/results.txt', 'r') as fin:
 				print (fin.read())
 		fin.close()
+	print()
+
+def regeneratePythonScript(numOfNodes, numOfColors):
+	# regenerate new python scirpt
+	# replace text content for specific lines in a text file https://stackoverflow.com/questions/4719438/editing-specific-line-in-text-file-in-python
+	with open('radio-coloring/UserDIY/radio.py', 'r') as file:
+	    data = file.readlines()
+	# line 17 and 140 replace number of colors
+	newColorList = []
+	for i in range(1, numOfColors + 1):
+		newColorList.append(str(i))
+	data[16] = "        self.bands = ['"
+	data[139] = "    domains = {state: ['"
+	for j in range(0, len(newColorList)):
+		if j != numOfColors - 1:
+			data[16] += (newColorList[j] + "', '")
+			data[139] += (newColorList[j] + "', '")
+		else:
+			data[16] += (newColorList[j] + "']\n")
+			data[139] += (newColorList[j] + "'] for state in solver.states}\n")
+	# line 124 replace map file location
+	if numOfNodes != 2:
+		if mapChoice == 'g':
+			data[123] = "    filename = \"map-generator/newMap/" + str(numOfNodes) + "nodes_radio.txt\"\n"
+		else:
+			data[123] = "    filename = \"map-generator/" + str(numOfNodes) + "nodes_radio.txt\"\n"
+	else:
+		if neighbourOrSep == 'n':
+			data[123] = "    filename = \"map-generator/2nodes_radio.txt\"\n"
+		else:
+			data[123] = "    filename = \"map-generator/2nodes_radio_separate.txt\"\n"
+	# write the script back
+	with open('radio-coloring/UserDIY/radio.py', 'w') as file:
+	    file.writelines(data)
+	file.close()
 
 
 if mapChoice == 'a' or mapChoice == 'b':
@@ -134,7 +161,8 @@ if mapChoice == 'a' or mapChoice == 'b':
 
 else:
 	# ask for the number of colors input
-	print("How many colors do you want to test backtracking algorithm? (Color number is smartly assigned by other algorithms)")
+	# print("How many colors do you want to test backtracking algorithm? (Color number is smartly assigned by other algorithms)")
+	print("How many colors do you want?")
 	while True:
 		try:
 			numOfColors = int(input("Must be a positive int: "))
@@ -144,13 +172,20 @@ else:
 
 	# ask for the number of nodes input
 	if mapChoice == 'g':
-		print("How many nodes do you want to be filled in the map for the map to be colored?")
+		# print("How many nodes do you want to be filled in the map for the map to be colored?")
+		print("====================")
+		print("Note: for simplicity of code and testing purpose, we have dropped the support of less than 5 nodes.")
+		print("====================")
+		print("How many nodes do you want?")
 		while True:
 			try:
-				numOfNodes = int(input("Must be a positive int: "))
+				numOfNodes = int(input("Must be a larger than 4 int: "))
+				while numOfNodes < 5:
+					numOfNodes = int(input("A larger than 4 positive int is an integer in [5, ∞]: "))
 				break
 			except ValueError:
-			   print("A positive int is an integer in [1, ∞]")
+			   continue
+
 		# determine coloring map
 		if numOfNodes == 2:
 			# will use the only two possible existing maps for 2 nodes
@@ -162,40 +197,44 @@ else:
 			taskHere = "python3.6 map-generator/mapNodesGenerator.py " + str(numOfNodes)
 			output = subprocess.check_call(taskHere, shell=True)
 
-		# regenerate new python scirpt
-		# replace text content for specific lines in a text file https://stackoverflow.com/questions/4719438/editing-specific-line-in-text-file-in-python
-		with open('radio-coloring/UserDIY/radio.py', 'r') as file:
-		    data = file.readlines()
-		# line 17 and 140 replace number of colors
-		newColorList = []
-		for i in range(1, numOfColors + 1):
-			newColorList.append(str(i))
-		data[16] = "        self.bands = ['"
-		data[139] = "    domains = {state: ['"
-		for j in range(0, len(newColorList)):
-			if j != numOfColors - 1:
-				data[16] += (newColorList[j] + "', '")
-				data[139] += (newColorList[j] + "', '")
-			else:
-				data[16] += (newColorList[j] + "']")
-				data[139] += (newColorList[j] + "'] for state in solver.states}")
-		# line 124 replace map file location
-		if numOfNodes != 2:
-			data[123] = "    filename = \"map-generator/newMap/" + numOfNodes + "nodes_radio.txt\""
-		else:
-			if neighbourOrSep == 'n':
-				data[123] = "    filename = \"map-generator/2nodes_radio.txt\""
-			else:
-				data[123] = "    filename = \"map-generator/2nodes_radio_separate.txt\""
-		# write the script back
-		with open('radio-coloring/UserDIY/radio.py', 'r') as file:
-		    file.writelines(data)
-		file.close()
+		regeneratePythonScript(numOfNodes, numOfColors)
 		# execute backtracking on the new generated map(if numOfNodes == 2)
 		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/UserDIY/radio.py radio-coloring/UserDIY/constraints; ((i++)); done"
 		output = subprocess.check_call(taskHere, shell=True)
 		# show coloring results
 		showColoringResults()
+
+		print("2 - Coloring the nodes at your choice by other algorithms with auto set colors\n")
+		# regenerate other algos C++ scripts
+		writeToOtherAlgosMapFile(numOfNodes)
+		# run algorithms
+		taskHere = "cd graph-coloring-algos; make; ./color-test"
+		output = subprocess.check_call(taskHere, shell=True)
+
+	else:
+
+		if mapChoice == 'c':
+			numOfNodes = 100
+		elif mapChoice == 'd':
+			numOfNodes = 300
+		elif mapChoice == 'e':
+			numOfNodes = 400
+		elif mapChoice == 'f':
+			numOfNodes = 500
+
+		# regenerate py script and execute
+		regeneratePythonScript(numOfNodes, numOfColors)
+		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/UserDIY/radio.py radio-coloring/UserDIY/constraints; ((i++)); done"
+		output = subprocess.check_call(taskHere, shell=True)
+		showColoringResults()
+
+		print("2 - Coloring previously set " + str(numOfNodes) + " nodes by other algorithms with auto set colors\n")
+		# regenerate c++ script and execute
+		writeToOtherAlgosMapFile(numOfNodes)
+		taskHere = "cd graph-coloring-algos; make; ./color-test"
+		output = subprocess.check_call(taskHere, shell=True)
+
+
 
 
 

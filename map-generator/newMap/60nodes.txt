@@ -1,13 +1,3 @@
-#include <gtest/gtest.h>
-
-#include <climits>
-
-#include "../Header/tabucol.hpp"
-
-using GraphColoring::Tabucol;
-
-TEST(TabucolTests, TabucolK5ColorTest) {
-
     vector<string> node_k1 = { "k14", "k26", "k52", "k56" };
     vector<string> node_k2 = { "k12", "k13", "k17", "k26", "k28", "k32", "k33", "k34", "k39" };
     vector<string> node_k3 = { "k4", "k6", "k9", "k11", "k23", "k35", "k37", "k38", "k39", "k44", "k46", "k51", "k52", "k54" };
@@ -69,11 +59,3 @@ TEST(TabucolTests, TabucolK5ColorTest) {
     vector<string> node_k59 = { "k2", "k7", "k11", "k13", "k22", "k23", "k24", "k31", "k32", "k33", "k40", "k41", "k49", "k51", "k52", "k54", "k55", "k57" };
     vector<string> node_k60 = { "k32", "k45" };
     map<string,vector<string>> k60 = { {"k1", node_k1}, {"k2", node_k2}, {"k3", node_k3}, {"k4", node_k4}, {"k5", node_k5}, {"k6", node_k6}, {"k7", node_k7}, {"k8", node_k8}, {"k9", node_k9}, {"k10", node_k10}, {"k11", node_k11}, {"k12", node_k12}, {"k13", node_k13}, {"k14", node_k14}, {"k15", node_k15}, {"k16", node_k16}, {"k17", node_k17}, {"k18", node_k18}, {"k19", node_k19}, {"k20", node_k20}, {"k21", node_k21}, {"k22", node_k22}, {"k23", node_k23}, {"k24", node_k24}, {"k25", node_k25}, {"k26", node_k26}, {"k27", node_k27}, {"k28", node_k28}, {"k29", node_k29}, {"k30", node_k30}, {"k31", node_k31}, {"k32", node_k32}, {"k33", node_k33}, {"k34", node_k34}, {"k35", node_k35}, {"k36", node_k36}, {"k37", node_k37}, {"k38", node_k38}, {"k39", node_k39}, {"k40", node_k40}, {"k41", node_k41}, {"k42", node_k42}, {"k43", node_k43}, {"k44", node_k44}, {"k45", node_k45}, {"k46", node_k46}, {"k47", node_k47}, {"k48", node_k48}, {"k49", node_k49}, {"k50", node_k50}, {"k51", node_k51}, {"k52", node_k52}, {"k53", node_k53}, {"k54", node_k54}, {"k55", node_k55}, {"k56", node_k56}, {"k57", node_k57}, {"k58", node_k58}, {"k59", node_k59}, {"k60", node_k60} };
-
-    Tabucol* tabucol = new Tabucol(k60);
-
-    map<string,int> resultant = tabucol->color();
-
-    delete tabucol;
-
-}
