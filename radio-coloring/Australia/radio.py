@@ -103,7 +103,7 @@ class RadioSolver:
 
     def printAnswer(self):
         # logging.debug("Frequency assignment is consistent : " + str(self.is_consistent()))
-        with open("results.txt", 'w') as output_file:
+        with open("radio-coloring/Australia/results.txt", 'w') as output_file:
             for state in self.stateband.keys():
                 output_file.write("%s\n" % (state + " " + self.stateband.pop(state)))
         # print "Number of backtracks: " + str(self.back_track_counter)

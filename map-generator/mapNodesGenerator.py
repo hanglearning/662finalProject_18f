@@ -23,49 +23,58 @@ def NeighborGenerator(nodeNum):
   return nodelist
 
 def mapGeneratorOthers():
-  open('map.txt', 'w').close()
+  open('map-generator/' + NODES_NUMBER + 'nodes.txt', 'w').close()
+  open('map-generator/' + NODES_NUMBER + 'nodes_radio.txt', 'w').close()
+
   for node in range(1, NODES_NUMBER + 1):
-    f = open("map.txt", "a")
-    f.write("    vector<string> node_k")
-    f.write(str(node))
-    f.write(" = { \"k")
+    nodes_file = open('map-generator/' + NODES_NUMBER + 'nodes.txt', "a")
+    nodes_radio_file = open('map-generator/' + NODES_NUMBER + 'nodes_radio.txt', "a")
+    nodes_file.write("    vector<string> node_k")
+    nodes_file.write(str(node))
+    nodes_radio_file.write(str(node))
+    nodes_file.write(" = { \"k")
+    nodes_radio_file.write(" ")
     neighborList = NeighborGenerator(node)
     neighborList.sort()
     neighborNum = len(neighborList)
     for i in range(0, neighborNum):
-      f.write(str(neighborList[i]))
+      nodes_file.write(str(neighborList[i]))
+      nodes_radio_file.write(str(neighborList[i]))
       if i != (neighborNum - 1):
-        f.write("\", \"k")
+        nodes_file.write("\", \"k")
+        nodes_radio_file.write(" ")
 
-    f.write("\" };")
-    f.write("\n")
-    f.close()
-  f = open("map.txt", "a")
-  f.write("    map<string,vector<string>> k")
-  f.write(str(NODES_NUMBER))
-  f.write(" = { ")
+    nodes_file.write("\" };")
+    nodes_file.write("\n")
+    nodes_file.close()
+    nodes_radio_file.close()
+
+  nodes_file = open('map-generator/' + NODES_NUMBER + 'nodes.txt', "a")
+  nodes_file.write("    map<string,vector<string>> k")
+  nodes_file.write(str(NODES_NUMBER))
+  nodes_file.write(" = { ")
   for i in range(1, NODES_NUMBER + 1):
-    f.write("{\"k")
-    f.write(str(i))
-    f.write("\", node_k")
-    f.write(str(i))
+    nodes_file.write("{\"k")
+    nodes_file.write(str(i))
+    nodes_file.write("\", node_k")
+    nodes_file.write(str(i))
     if i != NODES_NUMBER:
-      f.write("}, ")
+      nodes_file.write("}, ")
     else:
-      f.write("} };")
-  f.close()
+      nodes_file.write("} };")
+  nodes_file.close()
 
 mapGeneratorOthers()
 
-for algo in algos:
-  print("#include <gtest/gtest.h>")
-  if algo == "tabucol":
-    print("#include <climits>")
-  print()
-  print("#include \"../Header/" + algo + ".hpp\"")
-  print()
-  print("using GraphColoring::" + algo.capitalize() + ";")
-  print()
-  print("TEST(" + algo.capitalize() + "Tests, " + algo.capitalize() + "K5ColorTest) {")
+# for algo in algos:
+#   print("#include <gtest/gtest.h>")
+#   if algo == "tabucol":
+#     print("#include <climits>")
+#   print()
+#   print("#include \"../Header/" + algo + ".hpp\"")
+#   print()
+#   print("using GraphColoring::" + algo.capitalize() + ";")
+#   print()
+#   print("TEST(" + algo.capitalize() + "Tests, " + algo.capitalize() + "K5ColorTest) {")
   
 

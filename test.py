@@ -1,4 +1,8 @@
 import subprocess
+import sys
+sys.path.insert(0, 'map-generator')
+
+import mapGeneratorOthers
 
 print("https://github.com/hanglearning/662finalProject_18f")
 print("Welcome to Rongxuan, Yueran and Hang's Graph Coloring Algorithms Mini Benchmark Platform!")
@@ -108,6 +112,9 @@ if mapChoice == 'a' or 'b':
 	
 	# execute algorithms
 	ausAndUsa(mapChoice)
+
+elif:
+	mapGeneratorOthers()
 
 
 
