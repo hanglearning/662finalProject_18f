@@ -1,7 +1,9 @@
 import sys
 from random import randint
 
-NODES_NUMBER = 400
+# get user inputs
+arguments = sys.argv
+NODES_NUMBER = int(arguments[1])
 
 algos = ["dsatur", "hybrid_dsatur", "hybrid_lmxrlf", "lmxrlf", "mcs", "tabucol"]
 
@@ -20,14 +22,13 @@ def NeighborGenerator(nodeNum):
     nodelist.append(nodeSeq)
   return nodelist
 
-def mapGenerator():
-  open('demofile.txt', 'w').close()
+def mapGeneratorOthers():
+  open('map.txt', 'w').close()
   for node in range(1, NODES_NUMBER + 1):
-    f = open("demofile.txt", "a")
+    f = open("map.txt", "a")
     f.write("    vector<string> node_k")
     f.write(str(node))
     f.write(" = { \"k")
-  
     neighborList = NeighborGenerator(node)
     neighborList.sort()
     neighborNum = len(neighborList)
@@ -39,7 +40,7 @@ def mapGenerator():
     f.write("\" };")
     f.write("\n")
     f.close()
-  f = open("demofile.txt", "a")
+  f = open("map.txt", "a")
   f.write("    map<string,vector<string>> k")
   f.write(str(NODES_NUMBER))
   f.write(" = { ")
@@ -54,7 +55,7 @@ def mapGenerator():
       f.write("} };")
   f.close()
 
-mapGenerator()
+mapGeneratorOthers()
 
 for algo in algos:
   print("#include <gtest/gtest.h>")

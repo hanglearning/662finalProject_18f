@@ -1,13 +1,3 @@
-#include <gtest/gtest.h>
-
-#include <climits>
-
-#include "../Header/tabucol.hpp"
-
-using GraphColoring::Tabucol;
-
-TEST(TabucolTests, TabucolK5ColorTest) {
-
     vector<string> node_Alaska = {};
     vector<string> node_Alabama = { "Mississippi" , "Tennessee" , "Georgia" , "Florida" };
     vector<string> node_Arkansas = { "Missouri" , "Tennessee" , "Mississippi" , "Louisiana" , "Texas" , "Oklahoma" , "Oklahoma" };
@@ -60,11 +50,3 @@ TEST(TabucolTests, TabucolK5ColorTest) {
     vector<string> node_Wyoming = { "Montana" , "South_Dakota" , "Nebraska" , "Colorado" , "Utah" , "Idaho" , "Idaho" };
 
     map<string, vector<string>> kusa = { {"Alabama", node_Alabama}, {"Alaska", node_Alaska}, {"Arizona", node_Arizona}, {"Arkansas", node_Arkansas}, {"California", node_California}, {"Colorado", node_Colorado}, {"Connecticut", node_Connecticut}, {"Delaware", node_Delaware}, {"Florida", node_Florida}, {"Georgia", node_Georgia}, {"Hawaii", node_Hawaii}, {"Idaho", node_Idaho}, {"Illinois", node_Illinois}, {"Indiana", node_Indiana}, {"Iowa", node_Iowa}, {"Kansas", node_Kansas}, {"Kentucky", node_Kentucky}, {"Louisiana", node_Louisiana}, {"Maine", node_Maine}, {"Maryland", node_Maryland}, {"Massachusetts", node_Massachusetts}, {"Michigan", node_Michigan}, {"Minnesota", node_Minnesota}, {"Mississippi", node_Mississippi}, {"Missouri", node_Missouri}, {"Montana", node_Montana}, {"Nebraska", node_Nebraska}, {"Nevada", node_Nevada}, {"New_Hampshire", node_New_Hampshire}, {"New_Jersey", node_New_Jersey}, {"New_Mexico", node_New_Mexico}, {"New_York", node_New_York}, {"North_Carolina", node_North_Carolina}, {"North_Dakota", node_North_Dakota}, {"Ohio", node_Ohio}, {"Oklahoma", node_Oklahoma}, {"Oregon", node_Oregon}, {"Pennsylvania", node_Pennsylvania}, {"Rhode_Island", node_Rhode_Island}, {"South_Carolina", node_South_Carolina}, {"South_Dakota", node_South_Dakota}, {"Tennessee", node_Tennessee}, {"Texas", node_Texas}, {"Utah", node_Utah}, {"Vermont", node_Vermont}, {"Virginia", node_Virginia}, {"Washington", node_Washington}, {"West_Virginia", node_West_Virginia}, {"Wisconsin", node_Wisconsin}, {"Wyoming", node_Wyoming} };
-
-    Tabucol* tabucol = new Tabucol(kusa);
-
-    map<string,int> resultant = tabucol->color();
-
-    delete tabucol;
-
-}

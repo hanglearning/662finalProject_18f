@@ -9,7 +9,7 @@ using std::cerr;
 using std::endl;
 
 map<string,int> GraphColoring::Dsatur::color() {
-    std::cout << "Called" << endl;
+    // std::cout << "Called" << endl;
     if(this->graph.size() == 0) {
         this->graph_colors = map<string,int>();
         return map<string,int>();

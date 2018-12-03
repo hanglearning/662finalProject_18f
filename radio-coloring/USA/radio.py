@@ -103,7 +103,7 @@ class RadioSolver:
 
     def printAnswer(self):
         # logging.debug("Frequency assignment is consistent : " + str(self.is_consistent()))
-        with open("results.txt", 'w') as output_file:
+        with open("radio-coloring/USA/results.txt", 'w') as output_file:
             for state in self.stateband.keys():
                 output_file.write("%s\n" % (state + " " + self.stateband.pop(state)))
         # print "Number of backtracks: " + str(self.back_track_counter)
@@ -184,7 +184,7 @@ def main():
     start = time.time()
     solver = RadioSolver()
     
-    filename = "adjacent-states-usa"
+    filename = "radio-coloring/USA/adjacent-states-usa"
     max_neighbours_state = ""
     max_neighbours = 0
     with open(filename, 'r') as adjacent_states:
@@ -222,7 +222,7 @@ def main():
     result = solver.forward_check(assigned_states, domains,
                          list(set(solver.states[:]) - set(assigned_states)))
     if not result:
-        print "No assignment possible"
+        print ("No assignment possible")
     else:
         solver.printAnswer()
     logging.info("Execution time : " + str(time.time() - start))

@@ -188,8 +188,7 @@ class RadioSolver:
 def main():
     start = time.time()
     solver = RadioSolver()
-    
-    filename = "adjacent-states-au"
+    filename = "radio-coloring/Australia/adjacent-states-au"
     max_neighbours_state = ""
     max_neighbours = 0
     with open(filename, 'r') as adjacent_states:
@@ -227,7 +226,7 @@ def main():
     result = solver.forward_check(assigned_states, domains,
                          list(set(solver.states[:]) - set(assigned_states)))
     if not result:
-        print "No assignment possible"
+        print ("No assignment possible")
     else:
         solver.printAnswer()
     logging.info("Execution time : " + str(time.time() - start))
