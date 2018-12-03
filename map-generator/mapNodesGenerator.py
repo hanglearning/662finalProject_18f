@@ -22,13 +22,13 @@ def NeighborGenerator(nodeNum):
     nodelist.append(nodeSeq)
   return nodelist
 
-def mapGeneratorOthers():
-  open('map-generator/' + NODES_NUMBER + 'nodes.txt', 'w').close()
-  open('map-generator/' + NODES_NUMBER + 'nodes_radio.txt', 'w').close()
+def mapGenerator():
+  open('map-generator/newMap/' + str(NODES_NUMBER) + 'nodes.txt', 'w').close()
+  open('map-generator/newMap/' + str(NODES_NUMBER) + 'nodes_radio.txt', 'w').close()
 
   for node in range(1, NODES_NUMBER + 1):
-    nodes_file = open('map-generator/' + NODES_NUMBER + 'nodes.txt', "a")
-    nodes_radio_file = open('map-generator/' + NODES_NUMBER + 'nodes_radio.txt', "a")
+    nodes_file = open('map-generator/newMap/' + str(NODES_NUMBER) + 'nodes.txt', "a")
+    nodes_radio_file = open('map-generator/newMap/' + str(NODES_NUMBER) + 'nodes_radio.txt', "a")
     nodes_file.write("    vector<string> node_k")
     nodes_file.write(str(node))
     nodes_radio_file.write(str(node))
@@ -47,9 +47,10 @@ def mapGeneratorOthers():
     nodes_file.write("\" };")
     nodes_file.write("\n")
     nodes_file.close()
+    nodes_radio_file.write("\n")
     nodes_radio_file.close()
 
-  nodes_file = open('map-generator/' + NODES_NUMBER + 'nodes.txt', "a")
+  nodes_file = open('map-generator/newMap/' + str(NODES_NUMBER) + 'nodes.txt', "a")
   nodes_file.write("    map<string,vector<string>> k")
   nodes_file.write(str(NODES_NUMBER))
   nodes_file.write(" = { ")
@@ -64,7 +65,7 @@ def mapGeneratorOthers():
       nodes_file.write("} };")
   nodes_file.close()
 
-mapGeneratorOthers()
+mapGenerator()
 
 # for algo in algos:
 #   print("#include <gtest/gtest.h>")

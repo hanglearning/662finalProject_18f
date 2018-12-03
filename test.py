@@ -1,8 +1,8 @@
 import subprocess
 import sys
-sys.path.insert(0, 'map-generator')
+# sys.path.insert(0, 'map-generator')
 
-import mapGeneratorOthers
+# import mapNodesGenerator
 
 print("https://github.com/hanglearning/662finalProject_18f")
 print("Welcome to Rongxuan, Yueran and Hang's Graph Coloring Algorithms Mini Benchmark Platform!")
@@ -81,17 +81,20 @@ def ausAndUsa(_choice):
 		print("1 - Coloring the Map of USA by backtracking algorithms with 4 colors")
 		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/USA/radio.py radio-coloring/USA/constraints-usa; ((i++)); done"
 	output = subprocess.check_call(taskHere, shell=True)
-	showResult = input("Would you like to show the coloring result?(y/n):")
-	while showResult not in ['y', 'n']:
-		showResult = input("Please only input 'y' or 'n'..")
-	if showResult == 'y':
-		if mapChoice == 'a':
-			with open('radio-coloring/Australia/results.txt', 'r') as fin:
-				print (fin.read())
-		else:
-			with open('radio-coloring/USA/results.txt', 'r') as fin:
-				print (fin.read())
-		fin.close()
+
+	# show coloring result
+	# showResult = input("Would you like to show the coloring result?(y/n):")
+	# while showResult not in ['y', 'n']:
+	# 	showResult = input("Please only input 'y' or 'n'..")
+	# if showResult == 'y':
+	# 	if mapChoice == 'a':
+	# 		with open('radio-coloring/Australia/results.txt', 'r') as fin:
+	# 			print (fin.read())
+	# 	else:
+	# 		with open('radio-coloring/USA/results.txt', 'r') as fin:
+	# 			print (fin.read())
+	# 	fin.close()
+	showColoringResults()
 
 	# execute other algorithms
 	# Map of Australia
@@ -106,15 +109,97 @@ def ausAndUsa(_choice):
 	taskHere = "cd graph-coloring-algos; make; ./color-test"
 	output = subprocess.check_call(taskHere, shell=True)
 
+def showColoringResults():
+	showResult = input("Would you like to show the coloring result?(y/n):")
+	while showResult not in ['y', 'n']:
+		showResult = input("Please only input 'y' or 'n'..")
+	if showResult == 'y':
+		if mapChoice == 'a':
+			with open('radio-coloring/Australia/results.txt', 'r') as fin:
+				print (fin.read())
+		elif mapChoice == 'b':
+			with open('radio-coloring/USA/results.txt', 'r') as fin:
+				print (fin.read())
+		else:
+			with open('radio-coloring/UserDIY/results.txt', 'r') as fin:
+				print (fin.read())
+		fin.close()
 
-if mapChoice == 'a' or 'b':
+
+if mapChoice == 'a' or mapChoice == 'b':
 	# Map of Australia or USA
 	
 	# execute algorithms
 	ausAndUsa(mapChoice)
 
-elif:
-	mapGeneratorOthers()
+else:
+	# ask for the number of colors input
+	print("How many colors do you want to test backtracking algorithm? (Color number is smartly assigned by other algorithms)")
+	while True:
+		try:
+			numOfColors = int(input("Must be a positive int: "))
+			break
+		except ValueError:
+		   print("A positive int is an integer in [1, ∞]")
+
+	# ask for the number of nodes input
+	if mapChoice == 'g':
+		print("How many nodes do you want to be filled in the map for the map to be colored?")
+		while True:
+			try:
+				numOfNodes = int(input("Must be a positive int: "))
+				break
+			except ValueError:
+			   print("A positive int is an integer in [1, ∞]")
+		# determine coloring map
+		if numOfNodes == 2:
+			# will use the only two possible existing maps for 2 nodes
+			neighbourOrSep = input("Would you like the two nodes be neighbours or separate?(n/s):")
+			while neighbourOrSep not in ['n', 's']:
+				neighbourOrSep = input("Please only input 'n' or 's'..")
+		else:
+			# generate map
+			taskHere = "python3.6 map-generator/mapNodesGenerator.py " + str(numOfNodes)
+			output = subprocess.check_call(taskHere, shell=True)
+
+		# regenerate new python scirpt
+		# replace text content for specific lines in a text file https://stackoverflow.com/questions/4719438/editing-specific-line-in-text-file-in-python
+		with open('radio-coloring/UserDIY/radio.py', 'r') as file:
+		    data = file.readlines()
+		# line 17 and 140 replace number of colors
+		newColorList = []
+		for i in range(1, numOfColors + 1):
+			newColorList.append(str(i))
+		data[16] = "        self.bands = ['"
+		data[139] = "    domains = {state: ['"
+		for j in range(0, len(newColorList)):
+			if j != numOfColors - 1:
+				data[16] += (newColorList[j] + "', '")
+				data[139] += (newColorList[j] + "', '")
+			else:
+				data[16] += (newColorList[j] + "']")
+				data[139] += (newColorList[j] + "'] for state in solver.states}")
+		# line 124 replace map file location
+		if numOfNodes != 2:
+			data[123] = "    filename = \"map-generator/newMap/" + numOfNodes + "nodes_radio.txt\""
+		else:
+			if neighbourOrSep == 'n':
+				data[123] = "    filename = \"map-generator/2nodes_radio.txt\""
+			else:
+				data[123] = "    filename = \"map-generator/2nodes_radio_separate.txt\""
+		# write the script back
+		with open('radio-coloring/UserDIY/radio.py', 'r') as file:
+		    file.writelines(data)
+		file.close()
+		# execute backtracking on the new generated map(if numOfNodes == 2)
+		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/UserDIY/radio.py radio-coloring/UserDIY/constraints; ((i++)); done"
+		output = subprocess.check_call(taskHere, shell=True)
+		# show coloring results
+		showColoringResults()
+
+
+
+
 
 
 

@@ -1,0 +1,3 @@
+    vector<string> node_k1 = { };
+    vector<string> node_k2 = { };
+    map<string,vector<string>> k3 = { {"k1", node_k1}, {"k2", node_k2} };
