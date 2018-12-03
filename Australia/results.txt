@@ -1,7 +1,0 @@
-New_South_Wales Green
-Western_Australia Blue
-Victoria Blue
-South_Australia Red
-Queensland Blue
-Tasmania Red
-Northern_Territory Green
