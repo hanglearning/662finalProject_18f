@@ -77,7 +77,7 @@ class RadioSolver:
     def __init__(self):
         self.states = []
         self.adjacent = {}  # adjacency matrix
-        self.bands = ['A', 'B', 'C', 'D']  # all possible domain values
+        self.bands = ['Red', 'Green', 'Blue', 'Yellow']  # all possible domain values
         self.stateband = {}  # state and frequency assignment
         self.back_track_counter = 0  # total backtracks
         self.max_neighbours_state = ""  # neighbou with maximum neighbours
@@ -106,7 +106,7 @@ class RadioSolver:
         with open("results.txt", 'w') as output_file:
             for state in self.stateband.keys():
                 output_file.write("%s\n" % (state + " " + self.stateband.pop(state)))
-        print "Number of backtracks: " + str(self.back_track_counter)
+        # print "Number of backtracks: " + str(self.back_track_counter)
 
     def prune_domains(self, state, band, domains):  # updates the possible domain values of all the neighbours for
         # given state
@@ -181,10 +181,10 @@ class RadioSolver:
 
 
 def main():
-    # start = time.time()
+    start = time.time()
     solver = RadioSolver()
     
-    filename = "adjacent-states"
+    filename = "adjacent-states-usa"
     max_neighbours_state = ""
     max_neighbours = 0
     with open(filename, 'r') as adjacent_states:
@@ -200,7 +200,7 @@ def main():
 
     solver.max_neighbours_state = max_neighbours_state
     logging.debug('Reading from adjacency state file complete')
-    domains = {state: ['A', 'B', 'C', 'D'] for state in solver.states}
+    domains = {state: ['Red', 'Green', 'Blue', 'Yellow'] for state in solver.states}
 
     constraint_file = sys.argv[1]
 
@@ -225,7 +225,7 @@ def main():
         print "No assignment possible"
     else:
         solver.printAnswer()
-    # logging.info("Execution time : " + str(time.time() - start))
+    logging.info("Execution time : " + str(time.time() - start))
 
 
 if __name__ == '__main__':
