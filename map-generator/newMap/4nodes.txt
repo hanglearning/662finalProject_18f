@@ -1,5 +1,0 @@
-    vector<string> node_k1 = { "k2", "k3", "k4" };
-    vector<string> node_k2 = { "k1", "k3" };
-    vector<string> node_k3 = { "k2", "k4" };
-    vector<string> node_k4 = { "k1", "k2", "k3" };
-    map<string,vector<string>> k4 = { {"k1", node_k1}, {"k2", node_k2}, {"k3", node_k3}, {"k4", node_k4} };

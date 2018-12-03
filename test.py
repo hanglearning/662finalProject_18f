@@ -1,8 +1,11 @@
+# Hang Chen
+# Yueran Zhang
+# Rongxuan Hu
+
+# 2018F UD CISC662 Final Project main py
+
 import subprocess
 import sys
-# sys.path.insert(0, 'map-generator')
-
-# import mapNodesGenerator
 
 print("https://github.com/hanglearning/662finalProject_18f")
 print("Welcome to Rongxuan, Yueran and Hang's Graph Coloring Algorithms Mini Benchmark Platform!")
@@ -233,12 +236,4 @@ else:
 		writeToOtherAlgosMapFile(numOfNodes)
 		taskHere = "cd graph-coloring-algos; make; ./color-test"
 		output = subprocess.check_call(taskHere, shell=True)
-
-
-
-
-
-
-
-
-
+		
