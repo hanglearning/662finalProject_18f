@@ -9,10 +9,11 @@ import subprocess
 import sys
 
 # git clone google test files for the first run
-if len([name for name in os.listdir('graph-coloring-algos/googletest') if os.path.isfile(name)]) == 0:
+if os.path.isfile("graph-coloring-algos/googletest/Makefile.am") == False:
+	print("First run. Downloading googletest now...")
 	taskHere = "cd graph-coloring-algos; git clone https://github.com/abseil/googletest.git"
-	FNULL = open(os.devnull, 'w')
-	retcode = subprocess.call(taskHere, stdout=FNULL, stderr=subprocess.STDOUT)
+	output = subprocess.check_call(taskHere, shell=True)
+	print("done\n")
 
 print("https://github.com/hanglearning/662finalProject_18f")
 print("Welcome to Rongxuan, Yueran and Hang's Graph Coloring Algorithms Mini Benchmark Platform!")
