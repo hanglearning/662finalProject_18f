@@ -8,12 +8,23 @@ import os, os.path
 import subprocess
 import sys
 
-# git clone google test files for the first run
-if os.path.isfile("graph-coloring-algos/googletest/Makefile.am") == False:
-	print("First run. Downloading googletest now...")
+print("Requires python2.7, python3.6 and cmake.")
+print()
+
+# git clone graph-coloring and google test files for the first run
+if os.path.isdir("graph-coloring-algos") == False:
+	print("First run. Downloading graph-coloring repository now...")
+	taskHere = "git clone https://github.com/brrcrites/graph-coloring.git"
+	output = subprocess.check_call(taskHere, shell=True)
+	print("done\n")
+	os.rename("graph-coloring", "graph-coloring-algos")
+	print("Downloading googletest now...")
 	taskHere = "cd graph-coloring-algos; git clone https://github.com/abseil/googletest.git"
 	output = subprocess.check_call(taskHere, shell=True)
 	print("done\n")
+	print("cmake graph-coloring-algos")
+	taskHere = "cd graph-coloring-algos; cmake ."
+	output = subprocess.check_call(taskHere, shell=True)
 
 print("https://github.com/hanglearning/662finalProject_18f")
 print("Welcome to Rongxuan, Yueran and Hang's Graph Coloring Algorithms Mini Benchmark Platform!")
@@ -95,7 +106,7 @@ def ausAndUsa(_choice):
 	# Map of USA
 	else:
 		print("1 - Coloring the Map of USA by backtracking algorithms with 4 colors")
-		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/USA/radio.py radio-coloring/USA/constraints-au; i=$((i+1)); done"
+		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/USA/radio.py radio-coloring/USA/constraints-usa; i=$((i+1)); done"
 	output = subprocess.check_call(taskHere, shell=True)
 	showColoringResults()
 
