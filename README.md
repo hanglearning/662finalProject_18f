@@ -7,7 +7,8 @@ and https://github.com/brrcrites/graph-coloring and our automation script to pre
 Usage
 
   After you unzip or git clone the repository, run test.py directory in the top directory. 
-  Please have at least python3 to avoid any possible issues.
+  
+  This project requires python2.7, python3.6 and cmake
   
   $ python3.6 test.py
   
