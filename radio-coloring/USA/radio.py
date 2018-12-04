@@ -225,7 +225,7 @@ def main():
         print ("No assignment possible")
     else:
         solver.printAnswer()
-    logging.info("Execution time : " + str(time.time() - start))
+    logging.info("Execution time : " + str((time.time() - start) * 1000) + "ms")
 
 
 if __name__ == '__main__':
