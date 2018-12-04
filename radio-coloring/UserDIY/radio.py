@@ -14,7 +14,7 @@ class RadioSolver:
     def __init__(self):
         self.states = []
         self.adjacent = {}  # adjacency matrix
-        self.bands = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50']
+        self.bands = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40']
         self.stateband = {}  # state and frequency assignment
         self.back_track_counter = 0  # total backtracks
         self.max_neighbours_state = ""  # neighbou with maximum neighbours
@@ -121,7 +121,7 @@ def main():
     start = time.time()
     solver = RadioSolver()
     
-    filename = "map-generator/newMap/60nodes_radio.txt"
+    filename = "map-generator/newMap/120nodes_radio.txt"
     max_neighbours_state = ""
     max_neighbours = 0
     with open(filename, 'r') as adjacent_states:
@@ -137,7 +137,7 @@ def main():
 
     solver.max_neighbours_state = max_neighbours_state
     logging.debug('Reading from adjacency state file complete')
-    domains = {state: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50'] for state in solver.states}
+    domains = {state: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40'] for state in solver.states}
 
     constraint_file = sys.argv[1]
 

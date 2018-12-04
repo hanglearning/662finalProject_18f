@@ -66,16 +66,3 @@ def mapGenerator():
   nodes_file.close()
 
 mapGenerator()
-
-# for algo in algos:
-#   print("#include <gtest/gtest.h>")
-#   if algo == "tabucol":
-#     print("#include <climits>")
-#   print()
-#   print("#include \"../Header/" + algo + ".hpp\"")
-#   print()
-#   print("using GraphColoring::" + algo.capitalize() + ";")
-#   print()
-#   print("TEST(" + algo.capitalize() + "Tests, " + algo.capitalize() + "K5ColorTest) {")
-  
-
