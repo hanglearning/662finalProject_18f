@@ -90,11 +90,12 @@ def ausAndUsa(_choice):
 	# Map of Australia
 	if mapChoice == 'a':
 		print("1 - Coloring the Map of Australia by backtracking algorithms with 3 colors")
-		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/Australia/radio.py radio-coloring/Australia/constraints-au; ((i++)); done"
+		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/Australia/radio.py radio-coloring/Australia/constraints-au; i=$((i+1)); done"
+
 	# Map of USA
 	else:
 		print("1 - Coloring the Map of USA by backtracking algorithms with 4 colors")
-		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/USA/radio.py radio-coloring/USA/constraints-usa; ((i++)); done"
+		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/Australia/radio.py radio-coloring/USA/constraints-au; i=$((i+1)); done"
 	output = subprocess.check_call(taskHere, shell=True)
 	showColoringResults()
 
@@ -210,7 +211,7 @@ else:
 
 		regeneratePythonScript(numOfNodes, numOfColors)
 		# execute backtracking on the new generated map(if numOfNodes == 2)
-		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/UserDIY/radio.py radio-coloring/UserDIY/constraints; ((i++)); done"
+		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/UserDIY/radio.py radio-coloring/UserDIY/constraints; i=$((i+1)); done"
 		output = subprocess.check_call(taskHere, shell=True)
 		# show coloring results
 		showColoringResults()
@@ -235,7 +236,7 @@ else:
 
 		# regenerate py script and execute
 		regeneratePythonScript(numOfNodes, numOfColors)
-		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/UserDIY/radio.py radio-coloring/UserDIY/constraints; ((i++)); done"
+		taskHere = "i=0; while [ $i -lt 5 ]; do python2.7 radio-coloring/UserDIY/radio.py radio-coloring/UserDIY/constraints; i=$((i+1)); done"
 		output = subprocess.check_call(taskHere, shell=True)
 		showColoringResults()
 
