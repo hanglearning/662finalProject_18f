@@ -121,7 +121,7 @@ def main():
     start = time.time()
     solver = RadioSolver()
     
-    filename = "map-generator/newMap/120nodes_radio.txt"
+    filename = "map-generator/135nodes_radio.txt"
     max_neighbours_state = ""
     max_neighbours = 0
     with open(filename, 'r') as adjacent_states:

@@ -47,9 +47,9 @@ print("Available maps to color:")
 print("a - Map of Australia")
 print("b - Map of USA")
 print("c - 100 Nodes, previously generated")
-print("d - 300 Nodes, previously generated")
-print("e - 400 Nodes, previously generated")
-print("f - 500 Nodes, previously generated")
+print("d - 125 Nodes, previously generated")
+print("e - 130 Nodes, previously generated")
+print("f - 135 Nodes, previously generated")
 print("g - Randomly generate a new map at your choice of number of nodes")
 mapChoice = input("Please indicate the testing map - ")
 while mapChoice not in ['a', 'b', 'c', 'd', 'e', 'f', 'g']:
@@ -239,11 +239,11 @@ else:
 		if mapChoice == 'c':
 			numOfNodes = 100
 		elif mapChoice == 'd':
-			numOfNodes = 300
+			numOfNodes = 125
 		elif mapChoice == 'e':
-			numOfNodes = 400
+			numOfNodes = 130
 		elif mapChoice == 'f':
-			numOfNodes = 500
+			numOfNodes = 135
 
 		# regenerate py script and execute
 		regeneratePythonScript(numOfNodes, numOfColors)
