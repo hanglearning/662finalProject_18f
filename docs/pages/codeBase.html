@@ -1,0 +1,35 @@
+<h4>Code Base Deatils</h4>
+<hr>
+<h5>What is a map file</h5>
+<p>The map file is the input file to those algorithm programs.</p>
+<p>If you want to take a look at our pre-generated USA, Australia, 100, 125, 130 and 135 nodes map to get a better idea of what you are testing against, head to the map-generator/ folder, and open the corresponding txt files</p>
+<img src="images/map_file.png" alt="" class="d-inline-block">
+<p></p>
+<p>For example - this is the input map of USA</p>
+<img src="images/map_usa.png" alt="" class="d-inline-block">
+<p></p>
+<p>one vector node represents one state and the vector itself has the neighbors of this state.</p>
+<p>And this is only one part of the 100 nodes map, you get the idea -</p>
+<img src="images/map_100nodes.png" alt="" class="d-inline-block" width="100%">
+<p></p>
+<p>You will find two types of the map file. One named as #nodes.txt and the other named as #nodes_radio.txt. They are the same map input but #nodes_radio.txt has the input format that backtracking algorithm needs and #nodes.txt has the format that Dsatur and other algorithms need. The ones shown above are #nodes.txt. In #nodes_radio.txt file, the first iterm for each line is a node, followed by its neighbors. For example, this is the USA input map for backtracking -</p>
+<img src="images/usa_graphed_map.png" alt="" class="d-inline-block">
+<p></p>
+<p>(But the input map of USA and Australia for backtracking algorithms are in radio-coloring/the-country folder. As it is convenient to write our program in this way, I left them there, but I should've put them in the same folder.)</p>
+<hr>
+<h5>Colored map</h5>
+<p>The above image already showed you a colored USA map text file by Backtracking algorithm. Those files are at -</p>
+<ul>
+	<li>For USA, it is - radio-coloring/USA/results</li>
+	<li>For Australia, it is - radio-coloring/USA/results</li>
+	<li>For 100, 125, 130, 135 and your customized mao reuslts, they will be in - map-generator/newMap</li>
+</ul>
+<p>Again I should've organize them into one folder.</p>
+<p>You can also choose to display the resulted map in the program after you colored the map.</p>
+<img src="images/show_result.png" alt="" class="d-inline-block">
+<p></p>
+<p>However, the author of that Dsatur and other 5 algorithms package didn't give its program an option to print out the resulted map.</p>
+<hr>
+<h5>⚠️Notice</h5>
+<p>When you customize the map, the choice of the number of the colors you set will only work for the backtracking algorithm, as the author of the Dsatur algorithm program has built in a smart way of calculating the smallest number possible(After examing the code, I guess) and apply to the algorithm(then the time spent on this calculation should also be considered as part of the running time).</p>
+<p>Tips - <span style="color: blue">don't pick too small a number of colors</span>, as it would be so hard to color(more constraints), especially if the map is very complicated, and some times it would give you "No assignment possile", which happened during our live demo. Also <span style="color: blue">don't pick too big a number of colors</span>, as it would be so easy to color. We forgot to mention that we used 12 colors when testing on our pre-generated 100 nodes map, and 14 for 125, 14 for 125 and 15 colors for 135 nodes, as any color number below that for the corresponding map would explode our computer, above that the algorithms would run very fast. You may try yours though, but we are not responsible if your computers do explode...</p>

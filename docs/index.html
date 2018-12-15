@@ -1,1 +1,72 @@
-<h1>Test Github Page</h1>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+        <title>Github Blog for Team4 - Graph Coloring Project</title>
+    </head>
+
+    <body>
+    	<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="">Github Blog for Team4</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <div class="nav-link" href="" id="home">Choose a Topic - </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" href="" id="intro">Intro</div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" href="" id="usage">Usage</div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" href="" id="sampleOutput">Sample Output</div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" href="" id="codeBase">Code Base Deatils</div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" href="" id="projectSpecs">Project Specs</div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" href="" id="about">About</div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+		<div class="container">
+			<div class="card mx-4" style="margin-top: 20px">
+	    		<div class="card-body">
+	    			<div id="page-switch" class="mt-4"></div>
+	    		</div>
+	    	</div>
+    	</div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                // jQuery page switch
+                $("#page-switch").load("pages/home.html");
+                // head nav
+                $('.nav-link').click(function() {
+                    var page = $(this).attr('id');
+                    $("#page-switch").load("pages/" + page + ".html");
+                });
+
+                $('.navbar-nav>li>div').on('click', function(){
+                    $('.navbar-collapse').collapse('hide');
+                });
+            });
+        </script>
+    </body>
+</html>

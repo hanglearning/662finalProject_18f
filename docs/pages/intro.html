@@ -1,0 +1,34 @@
+<div>
+	<h4>Intro</h4>
+	<p>Graph Coloring Problem is NP-Complete, thus, we believe Graph Coloring Problem is a great way of testing the performance of different architectures due to its nature of running complex algorithm to iterate through constraints and find a solution. The more complicated a map, meaning the more nodes of a map it has, and the more constraints there are among each node, the more steps will be added to the algorithms to run through. Thus, comparing the algorithm's running time among different machines will get a hint of what are the factors that could affect an architecture's performance, such as CPU, memory, or GPU.</p>
+	<p>In this project, we have provided these 6 pre-built maps for testing</p>
+	<ul>
+		<li>Map of Australia</li>
+		<li>Map of USA</li>
+		<li>100 Nodes, previously generated</li>
+		<li>125 Nodes, previously generated</li>
+		<li>130 Nodes, previously generated</li>
+		<li>135 Nodes, previously generated</li>
+	</ul>
+	<p>(Why we made only 5 nodes of incrementation for the map? Since as the number of nodes increase, technically the difficulty of the map increases exponentially, therefore the running time would increase exponentially.)</p>
+	<p>And, we utilize these 7 algorithms to color these map</p>
+	<ul>
+		<li>Backtracking</li>
+		<li>Dsatur</li>
+		<li>Lmxrlf</li>
+		<li>Mcs</li>
+		<li>TabuCol</li>
+		<li>Hybrid Lmxrlf</li>
+		<li>Hybrid Dsatur</li>
+	</ul>
+	<p>As previously mentioned, the algorithm code are borrowed from these two repositories(thanks!) -</p>
+	<ul>
+		<li><a href="https://github.com/brrcrites/graph-coloring">https://github.com/brrcrites/graph-coloring</a></li>
+		<li><a href="https://github.com/chenxuhao/csrcolor">https://github.com/chenxuhao/csrcolor</a></li>
+	</ul>
+	<p>We have also provided a way to let you randomly generate a map of the number of nodes at your choice and test the performance of your machine. If you would like, you can also copy this map file to the other machines, run and compare. More detailed info will be explained in the below sections.</p>
+
+	<hr>
+    <h5 style="color:red">Disclaimer</h5>
+	<p>We haven’t verified the rightness of the implementation of the algorithms written in these two packages, so the performance results of the algorithms on different platforms should only be taken away as a sense of the comparison within one algorithm itself on different platforms, which is also the main goal of this project, rather than comparing the performances among these different algorithms. In short, we mean we should each time focus on the performance difference for one single algorithm across different testing configurations, rather than comparing the performance differences among different algorithms on a single platform. If you are interested in this topic I encourage to you take a deep learning of these algorithms and gain a better and precise understanding of their performances. We raised this question when we saw the Hybrid Dsatur performanced so bad on the map of Australia and USA compared to just the Dsatur, but the performance of Hybrid Dsatur on other maps are nearly the same as Dsatur on these same maps.</p>
+</div>

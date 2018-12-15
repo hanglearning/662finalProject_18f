@@ -1,0 +1,53 @@
+<div>
+	<h4>Project Specs</h4>
+	<hr>
+	<h5>Conclusion/Summary</h5>
+	<p>In this project, we briefly tested different algorithms on different architectural platforms that could solve Graph Coloring Problem and compare their performances. Even though our implementation of these seven algorithms could not be very precise, but it gives us an idea of how to measure the benchmark of a given platform. Furthermore, this implementation can also be measured across different architectures (such as different CPUs and GPUs that we used in this project).</p>
+
+	<p>Given the running time of these seven algorithms, we can indicate that with the increase of the nodes that are colored, the result becomes more precise and obvious. The overall performance is highly related with the CPUs cores number and the highest frequency it can boost. (all of the Intel CPUs that we used have frequency boost technology). By comparing the 4 platforms that we used, the Intel core i7-7850H which has 6-core and 2.2GHz frequency has the best performance since it has the most CPU cores and could boost up to 2.8GHz. Also, the Lmxrlf and the Hybrid Lmxrlf are not CPU friendly so that the result of these two algorithms varies strongly.</p>
+
+	<p>One flaw of out project is that we didn't implement the CUDA codes correctly due to the lack of software environment that our laptops have. If we could have more time and discuss this project deeper, we would like to running CUDA codes, based on these seven or more algorithms, on our laptops which has NVIDIA GPUs, or even on the servers in the lab.</p>
+	<hr>
+	<h5>Our Testing Platforms</h5>
+	<img src="images/testing_platform.png" alt="" class="d-inline-block" width="100%">
+	<p></p>
+	<hr>
+	<h5>Our Testing Results</h5>
+	<h6>Backtracking Performance Comparison Map of Australia and USA</h6>
+	<img src="images/backAusUSA1.png" alt="" class="d-inline-block" width="49%">
+	<img src="images/backAusUSA2.png" alt="" class="d-inline-block" width="49%">
+	<h6>Backtracking Performance Comparison Map of 100, 125, 130, 135 nodes</h6>
+	<div>
+		<img src="images/back100.png" alt="" class="d-inline-block" width="49%">
+		<img src="images/back125.png" alt="" class="d-inline-block" width="49%">
+	</div>
+	<div>
+		<img src="images/back130.png" alt="" class="d-inline-block" width="49%">
+		<img src="images/back135.png" alt="" class="d-inline-block" width="49%">
+	</div>
+	<h6>DSATUR Performance Comparison</h6>
+	<img src="images/DSATUR.png" alt="" class="d-inline-block" width="100%">
+	<h6>Other Algorithms Comparison</h6>
+	<ul>
+		<li>
+			<h6>Lmxrlf</h6>
+			<img src="images/DSATUR.png" alt="" class="d-inline-block" width="100%">
+		</li>
+		<li>
+			<h6>Mcs</h6>
+			<img src="images/Mcs.png" alt="" class="d-inline-block" width="100%">
+		</li>
+		<li>
+			<h6>Lmxrlf</h6>
+			<img src="images/TabuCol.png" alt="" class="d-inline-block" width="100%">
+		</li>
+		<li>
+			<h6>Lmxrlf</h6>
+			<img src="images/HybridLmxrlf.png" alt="" class="d-inline-block" width="100%">
+		</li>
+		<li>
+			<h6>Lmxrlf</h6>
+			<img src="images/HybridDsatur.png" alt="" class="d-inline-block" width="100%">
+		</li>
+	</ul>
+</div>
